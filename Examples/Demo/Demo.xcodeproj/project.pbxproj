@@ -58,6 +58,7 @@
 		2C1190A628BE84D00038D4B9 /* DeckUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DeckUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1190A828BE84D30038D4B9 /* DeckUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DeckUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1190C028C1A7030038D4B9 /* bill-murray.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bill-murray.jpeg"; sourceTree = "<group>"; };
+		317DCEC129B21E9C0079A9D9 /* Demo--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Demo--iOS--Info.plist"; sourceTree = "<group>"; };
 		377A9A5628CA76AC00AAA2E2 /* DeckUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DeckUI; path = ../..; sourceTree = "<group>"; };
 		37E2DBC728CA9A61006F664D /* big-buck-bunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "big-buck-bunny.mp4"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,6 +100,7 @@
 		2C11905428BE84340038D4B9 = {
 			isa = PBXGroup;
 			children = (
+				317DCEC129B21E9C0079A9D9 /* Demo--iOS--Info.plist */,
 				377A9A5528CA76AC00AAA2E2 /* Packages */,
 				2C11905928BE84350038D4B9 /* Shared */,
 				2C1190BF28C1A7030038D4B9 /* Media */,
@@ -513,11 +515,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 972KS36P2U;
+				DEVELOPMENT_TEAM = FUWNN36Z78;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Demo--iOS--Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app use camera on the deck";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -530,8 +534,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.joshholtz.Demo;
+				PRODUCT_BUNDLE_IDENTIFIER = dk.mojoapps.DeckUIDemo;
 				PRODUCT_NAME = Demo;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -544,11 +549,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 972KS36P2U;
+				DEVELOPMENT_TEAM = FUWNN36Z78;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Demo--iOS--Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app use camera on the deck";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -561,8 +568,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.joshholtz.Demo;
+				PRODUCT_BUNDLE_IDENTIFIER = dk.mojoapps.DeckUIDemo;
 				PRODUCT_NAME = Demo;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

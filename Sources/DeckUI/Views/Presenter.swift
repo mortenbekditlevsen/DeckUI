@@ -18,7 +18,7 @@ public struct Presenter: View {
     let cameraConfig: CameraConfig
     
     @State var index = 0
-    @State var isFullScreen = false
+    @State var isFullScreen = true
     @State var activeTransition: AnyTransition = .slideFromTrailing
     
     public init(deck: Deck, slideTransition: SlideTransition? = .horizontal, loop: Bool = false, defaultResolution: DefaultResolution = (width: 1920, height: 1080), showCamera: Bool = false, cameraConfig: CameraConfig = CameraConfig()) {
