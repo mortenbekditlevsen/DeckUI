@@ -117,8 +117,8 @@ public struct Presenter: View {
                 switch(value.translation.width, value.translation.height) {
                 case (tolerance, ...0):  lineUp()
                 case (tolerance, 0...):  lineDown()
-                case (...0, tolerance):  nextSlideWithAnimation()
-                case (0..., tolerance):  previousSlideWithAnimation()
+                case (...0, tolerance):  nextSlide()
+                case (0..., tolerance):  previousSlide()
                 default:  break
                 }
             }
@@ -129,17 +129,17 @@ public struct Presenter: View {
     var toolbarButtons: some View {
         Group {
             Button {
-                withAnimation {
+//                withAnimation {
                     self.previousSlide()
-                }
+//                }
             } label: {
                 Label("Previous", systemImage: "arrow.left")
             }.keyboardShortcut(.leftArrow, modifiers: [.option])
             
             Button {
-                withAnimation {
+//                withAnimation {
                     self.nextSlide()
-                }
+//                }
             } label: {
                 Label("Next", systemImage: "arrow.right")
             }.keyboardShortcut(.rightArrow, modifiers: [.option])
