@@ -134,7 +134,7 @@ public struct Presenter: View {
                 }
             } label: {
                 Label("Previous", systemImage: "arrow.left")
-            }.keyboardShortcut(.leftArrow, modifiers: [.command])
+            }.keyboardShortcut(.leftArrow, modifiers: [.option])
             
             Button {
                 withAnimation {
@@ -142,20 +142,20 @@ public struct Presenter: View {
                 }
             } label: {
                 Label("Next", systemImage: "arrow.right")
-            }.keyboardShortcut(.rightArrow, modifiers: [.command])
+            }.keyboardShortcut(.rightArrow, modifiers: [.option])
             
             Button {
                 lineDown()
 
             } label: {
                 Label("Down", systemImage: "arrow.down")
-            }.keyboardShortcut(.downArrow, modifiers: [.command])
+            }.keyboardShortcut(.downArrow, modifiers: [.option])
             
             Button {
                 lineUp()
             } label: {
                 Label("Up", systemImage: "arrow.up")
-            }.keyboardShortcut(.upArrow, modifiers: [.command])
+            }.keyboardShortcut(.upArrow, modifiers: [.option])
         }
     }
 
