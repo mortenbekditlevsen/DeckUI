@@ -117,8 +117,8 @@ public struct Presenter: View {
                 switch(value.translation.width, value.translation.height) {
                 case (tolerance, ...0):  lineUp()
                 case (tolerance, 0...):  lineDown()
-                case (...0, tolerance):  nextSlide()
-                case (0..., tolerance):  previousSlide()
+                case (...0, tolerance):  nextSlideWithAnimation()
+                case (0..., tolerance):  previousSlideWithAnimation()
                 default:  break
                 }
             }
@@ -165,6 +165,19 @@ public struct Presenter: View {
 
     private func lineDown() {
         NotificationCenter.default.post(name: .keyDown, object: nil)
+    }
+
+    private func previousSlideWithAnimation() {
+        withAnimation {
+            previousSlide()
+        }
+    }
+
+
+    private func nextSlideWithAnimation() {
+        withAnimation {
+            nextSlide()
+        }
     }
     
     private func nextSlide() {
