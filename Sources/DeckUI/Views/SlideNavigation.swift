@@ -8,11 +8,14 @@
 import SwiftUI
 
 public struct SlideNavigationToolbarButtons: View {
+    @ObservedObject var state: PresentationState
     public var body: some View {
         Group {
+            Text("\(state.mySlideIndex + 1) / \(state.slideCount)")
+
             Button {
                 withAnimation {
-                    PresentationState.shared.previousSlide()
+                    state.previousSlide()
                 }
             } label: {
                 Label("Previous", systemImage: "arrow.left")
@@ -20,7 +23,7 @@ public struct SlideNavigationToolbarButtons: View {
             
             Button {
                 withAnimation {
-                    PresentationState.shared.nextSlide()
+                    state.nextSlide()
                 }
             } label: {
                 Label("Next", systemImage: "arrow.right")
@@ -39,7 +42,7 @@ public struct SlideNavigationToolbarButtons: View {
             }.keyboardShortcut(.upArrow, modifiers: [])
         }
     }
-    public init() {
-        
+    public init(state: PresentationState) {
+        self.state = state
     }
 }

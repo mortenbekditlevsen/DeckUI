@@ -10,7 +10,7 @@ import SwiftUI
 public struct Presenter: View {
     public typealias DefaultResolution = (width: Double, height: Double)
     
-    @ObservedObject private var presentationState = PresentationState.shared
+    @ObservedObject private var presentationState: PresentationState
 
     let deck: Deck
     let defaultResolution: DefaultResolution
@@ -19,12 +19,13 @@ public struct Presenter: View {
     
     @State var isFullScreen = false
     
-    public init(deck: Deck, slideTransition: SlideTransition? = .horizontal, loop: Bool = false, defaultResolution: DefaultResolution = (width: 1920, height: 1080), showCamera: Bool = false, cameraConfig: CameraConfig = CameraConfig()) {
+    public init(deck: Deck, slideTransition: SlideTransition? = .horizontal, loop: Bool = false, defaultResolution: DefaultResolution = (width: 1920, height: 1080), showCamera: Bool = false, cameraConfig: CameraConfig = CameraConfig(), presentationState: PresentationState? = nil) {
 
         self.deck = deck
         self.defaultResolution = defaultResolution
         self.showCamera = showCamera
         self.cameraConfig = cameraConfig
+        self.presentationState = presentationState ?? .shared
         self.presentationState.deck = deck
         self.presentationState.loop = loop
         self.presentationState.slideTransition = slideTransition
@@ -83,17 +84,18 @@ public struct Presenter: View {
         ZStack {
             if self.isFullScreen {
                 VStack {
-                    SlideNavigationToolbarButtons()
+                    SlideNavigationToolbarButtons(state: presentationState)
                 }.opacity(0)
             }
             
             ForEach(Array(self.deck.slides().enumerated()), id: \.offset) { index, slide in
-                
+
                 if index == presentationState.slideIndex {
                     slide.buildView(theme: self.deck.theme)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .zIndex(Double(presentationState.slideIndex))
                 }
+
             }.transition(presentationState.activeTransition)
         }
         .navigationTitle(self.deck.title)
@@ -101,7 +103,7 @@ public struct Presenter: View {
         .if(!self.isFullScreen) {
             $0.toolbar {
                 ToolbarItemGroup {
-                    SlideNavigationToolbarButtons()
+                    SlideNavigationToolbarButtons(state: presentationState)
                 }
             }
         }

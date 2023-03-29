@@ -8,6 +8,7 @@
 import SwiftUI
 
 open class PresentationState: ObservableObject {
+    public init() {}
     static let shared = PresentationState()
     @Published var slideIndex = 0
     
@@ -67,37 +68,74 @@ open class PresentationState: ObservableObject {
         }
     public func nextSlide() {
         let slides = self.deck.slides()
+        var newSlideIndex = slideIndex
         if slideIndex >= (slides.count - 1) {
             if self.loop {
-                slideIndex = 0
+                newSlideIndex = 0
             }
         } else {
-            slideIndex += 1
+            newSlideIndex += 1
         }
         
-        let nextSlide = slides[slideIndex]
+        let nextSlide = slides[newSlideIndex]
         
         self.activeTransition = (nextSlide.transition ?? self.slideTransition).next
+        Task { @MainActor [newSlideIndex] in
+            try await Task.sleep(nanoseconds: 1_000)
+            withAnimation {
+                self.slideIndex = newSlideIndex
+            }
+        }
         NotificationCenter.default.post(name: .slideChanged, object: nextSlide)
-
     }
-    
+
+    public var slideCount: Int { self.deck.slides().count }
+
+    public var mySlideIndex: Int {
+        set {
+            let slides = self.deck.slides()
+            if newValue >= (slides.count - 1) {
+                if self.loop {
+                    slideIndex = 0
+                }
+            } else {
+                slideIndex = newValue
+            }
+
+            let nextSlide = slides[slideIndex]
+
+            self.activeTransition = (nextSlide.transition ?? self.slideTransition).next
+        }
+        get {
+            slideIndex
+        }
+    }
+
     public func previousSlide() {
         let slides = self.deck.slides()
 
         let currentSlide = slides[slideIndex]
-        
+
+        var newSlideIndex = slideIndex
         if slideIndex <= 0 {
             if self.loop {
-                slideIndex = slides.count - 1
+                newSlideIndex = slides.count - 1
             }
         } else {
-            slideIndex -= 1
+            newSlideIndex -= 1
         }
 
-        let previousSlide = slides[slideIndex]
+        let previousSlide = slides[newSlideIndex]
         
         self.activeTransition = (currentSlide.transition ?? self.slideTransition).previous
+
+        Task { @MainActor [newSlideIndex] in
+            try await Task.sleep(nanoseconds: 1_000)
+            withAnimation {
+                self.slideIndex = newSlideIndex
+            }
+        }
+
         NotificationCenter.default.post(name: .slideChanged, object: previousSlide)
 
     }

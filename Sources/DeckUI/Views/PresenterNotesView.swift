@@ -7,13 +7,13 @@
 
 import SwiftUI
 public struct PresenterNotesView: View {
-    @ObservedObject private var presentationState = PresentationState.shared
-    
+    @ObservedObject private var presentationState: PresentationState
     public var body: some View {
         Text(presentationState.deck.slides()[presentationState.slideIndex].comment ?? "No notes")
         .frame(minWidth: 100, maxWidth: .infinity, minHeight: 100, maxHeight: .infinity)
     }
-    public init() {
+    public init(state: PresentationState? = nil) {
+        presentationState = state ?? .shared
     }
         
     
@@ -21,16 +21,18 @@ public struct PresenterNotesView: View {
 #if canImport(AppKit)
 @available(macOS 13.0, *)
 public struct PresenterNotes: Scene {
+    private let state: PresentationState
+    public init(state: PresentationState? = nil) {
+        self.state = state ?? .shared
+    }
     public var body: some Scene {
         Window("Presenter Notes", id: "notes") {
-            PresenterNotesView()
+            PresenterNotesView(state: state)
                 .toolbar {
-                    SlideNavigationToolbarButtons()
+                    SlideNavigationToolbarButtons(state: state)
                 }
         }.keyboardShortcut("1")
 
-    }
-    public init() {
     }
 }
 #endif
